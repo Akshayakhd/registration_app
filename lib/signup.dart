@@ -6,11 +6,15 @@ class Signup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController emailc = TextEditingController();
+    TextEditingController passc = TextEditingController();
+    TextEditingController forgpassc = TextEditingController();
+    TextEditingController userc = TextEditingController();
     return Scaffold(
       backgroundColor: Colors.white,
 
       body: Padding(
-        padding: const EdgeInsets.only(left: 100, right: 100),
+        padding: const EdgeInsets.only(left: 20, right: 20),
         child: Center(
           child: Column(
             children: [
@@ -37,6 +41,7 @@ class Signup extends StatelessWidget {
                 ),
               ),
               TextField(
+                controller: userc,
                 decoration: InputDecoration(
                   hintText: "Username",
                   fillColor: Colors.white,
@@ -55,6 +60,7 @@ class Signup extends StatelessWidget {
                 ),
               ),
               TextField(
+                controller: emailc,
                 decoration: InputDecoration(
                   hintText: "Email",
                   fillColor: Colors.white,
@@ -73,6 +79,7 @@ class Signup extends StatelessWidget {
                 ),
               ),
               TextField(
+                controller: passc,
                 decoration: InputDecoration(
                   hintText: "Password",
                   fillColor: Colors.white,
@@ -91,6 +98,7 @@ class Signup extends StatelessWidget {
                 ),
               ),
               TextField(
+                controller: forgpassc,
                 decoration: InputDecoration(
                   hintText: "Confirm Password",
                   fillColor: Colors.white,
