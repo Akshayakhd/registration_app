@@ -2,156 +2,185 @@ import 'package:flutter/material.dart';
 import 'package:registration_app/login.dart';
 
 class Signup extends StatelessWidget {
-  const Signup({super.key});
+  //const Signup({super.key});
+  TextEditingController emailc = TextEditingController();
+  TextEditingController passc = TextEditingController();
+  TextEditingController forgpassc = TextEditingController();
+  TextEditingController userc = TextEditingController();
 
+  final formkey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    TextEditingController emailc = TextEditingController();
-    TextEditingController passc = TextEditingController();
-    TextEditingController forgpassc = TextEditingController();
-    TextEditingController userc = TextEditingController();
     return Scaffold(
       backgroundColor: Colors.white,
 
-      body: Padding(
-        padding: const EdgeInsets.only(left: 20, right: 20),
-        child: Center(
-          child: Column(
-            children: [
-              Text(
-                "Sign up",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 50,
-                  fontWeight: FontWeight.bold,
+      body: Form(
+        key: formkey,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20, right: 20),
+          child: Center(
+            child: Column(
+              children: [
+                Text(
+                  "Sign up",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
 
-              SizedBox(height: 2),
-              Text(
-                "Create an account,its free",
-                style: TextStyle(color: Colors.black, fontSize: 20),
-              ),
-              SizedBox(height: 20),
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  "Username",
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                SizedBox(height: 2),
+                Text(
+                  "Create an account,its free",
+                  style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
-              ),
-              TextField(
-                controller: userc,
-                decoration: InputDecoration(
-                  hintText: "Username",
-                  fillColor: Colors.white,
-                  filled: true,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(13),
+                SizedBox(height: 20),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "Username",
+                    style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
-              ),
-              SizedBox(height: 20),
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  "Email",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              TextField(
-                controller: emailc,
-                decoration: InputDecoration(
-                  hintText: "Email",
-                  fillColor: Colors.white,
-                  filled: true,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(13),
-                  ),
-                ),
-              ),
-              SizedBox(height: 20),
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  "Password",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              TextField(
-                controller: passc,
-                decoration: InputDecoration(
-                  hintText: "Password",
-                  fillColor: Colors.white,
-                  filled: true,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(13),
-                  ),
-                ),
-              ),
-              SizedBox(height: 20),
-              Align(
-                alignment: Alignment.topLeft,
-                child: Text(
-                  "Confirm Password",
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              TextField(
-                controller: forgpassc,
-                decoration: InputDecoration(
-                  hintText: "Confirm Password",
-                  fillColor: Colors.white,
-                  filled: true,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(13),
-                  ),
-                ),
-              ),
-              SizedBox(height: 40),
-
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Signup()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: Size(300, 60),
-                    backgroundColor: Colors.lightBlue,
-                    foregroundColor: Colors.white,
-                  ),
-                  child: Text("Sign up"),
-                ),
-              ),
-              SizedBox(height: 10),
-              Row(
-                children: [
-                  Text(
-                    "Already have and account? ",
-                    style: TextStyle(fontSize: 20),
-                  ),
-
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Login()),
-                      );
-                    },
-                    child: Text(
-                      "Login",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+                TextFormField(
+                  controller: userc,
+                  decoration: InputDecoration(
+                    hintText: "Username",
+                    fillColor: Colors.white,
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(13),
                     ),
                   ),
-                ],
-              ),
-            ],
+                ),
+                SizedBox(height: 20),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "Email",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Enter your Email";
+                    }
+                    if (!(value.contains("@") && value.contains("."))) {
+                      return "Enter a valid Email";
+                    }
+                  },
+                  controller: emailc,
+                  decoration: InputDecoration(
+                    hintText: "Email",
+                    fillColor: Colors.white,
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(13),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "Password",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Enter your password";
+                    }
+                    if (value.length != 8) {
+                      return "requires 8 characters or numbers";
+                    }
+                  },
+                  controller: passc,
+                  decoration: InputDecoration(
+                    hintText: "Password",
+                    fillColor: Colors.white,
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(13),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Align(
+                  alignment: Alignment.topLeft,
+                  child: Text(
+                    "Confirm Password",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Enter your password";
+                    }
+                    if (value != passc.text) {
+                      return "Password missmatches, Try again";
+                    }
+                  },
+                  controller: forgpassc,
+                  decoration: InputDecoration(
+                    hintText: "Confirm Password",
+                    fillColor: Colors.white,
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(13),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 40),
+
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (formkey.currentState!
+                          .validate()) //while signup clicks it shows the warnings for entering details
+                      {
+                        print("save");//shows the save in debug console or terminal
+                      }
+                    },
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: Size(300, 60),
+                      backgroundColor: Colors.lightBlue,
+                      foregroundColor: Colors.white,
+                    ),
+                    child: Text("Sign up"),
+                  ),
+                ),
+                SizedBox(height: 10),
+                Row(
+                  children: [
+                    Text(
+                      "Already have and account? ",
+                      style: TextStyle(fontSize: 20),
+                    ),
+
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Login()),
+                        );
+                      },
+                      child: Text(
+                        "Login",
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
