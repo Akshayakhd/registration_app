@@ -4,10 +4,20 @@ import 'package:registration_app/forgotpass.dart';
 import 'package:registration_app/service.dart';
 import 'package:registration_app/signup.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
   TextEditingController emailc = TextEditingController();
+
   TextEditingController passc = TextEditingController();
+
   final formkey = GlobalKey<FormState>();
+
+  bool isvisible = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,6 +80,7 @@ class Login extends StatelessWidget {
                   ),
                 ),
                 TextFormField(
+                  obscureText: isvisible,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Enter your password";
@@ -80,6 +91,16 @@ class Login extends StatelessWidget {
                   },
                   controller: passc,
                   decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isvisible = !isvisible;
+                        });
+                      },
+                      icon: isvisible
+                          ? Icon(Icons.visibility_off)
+                          : Icon(Icons.visibility),
+                    ),
                     hintText: "Password",
                     fillColor: Colors.white,
                     filled: true,

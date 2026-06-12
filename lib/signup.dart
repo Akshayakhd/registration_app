@@ -2,14 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:registration_app/login.dart';
 import 'package:registration_app/service.dart';
 
-class Signup extends StatelessWidget {
+class Signup extends StatefulWidget {
+  @override
+  State<Signup> createState() => _SignupState();
+}
+
+class _SignupState extends State<Signup> {
   //const Signup({super.key});
   TextEditingController emailc = TextEditingController();
+
   TextEditingController passc = TextEditingController();
+
   TextEditingController forgpassc = TextEditingController();
+
   TextEditingController userc = TextEditingController();
 
   final formkey = GlobalKey<FormState>();
+
+  bool pass_isvisible = true;
+
+  bool conf_isvisible = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,6 +77,7 @@ class Signup extends StatelessWidget {
                   ),
                 ),
                 TextFormField(
+                  obscureText: pass_isvisible,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Enter your Email";
@@ -100,8 +114,19 @@ class Signup extends StatelessWidget {
                     }
                   },
                   controller: passc,
+                  obscureText: pass_isvisible,
                   decoration: InputDecoration(
                     hintText: "Password",
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          pass_isvisible = !pass_isvisible;
+                        });
+                      },
+                      icon: pass_isvisible
+                          ? Icon(Icons.visibility_off)
+                          : Icon(Icons.visibility),
+                    ),
                     fillColor: Colors.white,
                     filled: true,
                     border: OutlineInputBorder(
@@ -118,6 +143,7 @@ class Signup extends StatelessWidget {
                   ),
                 ),
                 TextFormField(
+                  obscureText: conf_isvisible,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Enter your password";
@@ -128,6 +154,16 @@ class Signup extends StatelessWidget {
                   },
                   controller: forgpassc,
                   decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          conf_isvisible != conf_isvisible;
+                        });
+                      },
+                      icon: conf_isvisible
+                          ? Icon(Icons.visibility_off)
+                          : Icon(Icons.visibility),
+                    ),
                     hintText: "Confirm Password",
                     fillColor: Colors.white,
                     filled: true,
