@@ -9,4 +9,4 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(MaterialApp(debugShowCheckedModeBanner: false, home: Welcome()));
 }
-//firebasee core,firebaseauth,cloud firestore
+//firebasee core,firebaseauth,cloud firestore packages intalled from pub.dev

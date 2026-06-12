@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:registration_app/forgotpass.dart';
+import 'package:registration_app/service.dart';
 import 'package:registration_app/signup.dart';
 
 class Login extends StatelessWidget {
@@ -113,9 +114,8 @@ class Login extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       if (formkey.currentState!.validate()) {
-                        print("Successfully Logins!!");
+                        login(emailc.text, passc.text, context);
                       }
-                      ;
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: Size(300, 60),

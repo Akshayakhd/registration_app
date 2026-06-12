@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:registration_app/login.dart';
+import 'package:registration_app/service.dart';
 
 class Signup extends StatelessWidget {
   //const Signup({super.key});
@@ -143,7 +144,7 @@ class Signup extends StatelessWidget {
                       if (formkey.currentState!
                           .validate()) //while signup clicks it shows the warnings for entering details
                       {
-                        print("save");//shows the save in debug console or terminal
+                        register(userc.text, emailc.text, passc.text, context);
                       }
                     },
                     style: ElevatedButton.styleFrom(

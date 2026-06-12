@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:registration_app/login.dart';
+import 'package:registration_app/service.dart';
 
 class Forgotpass extends StatelessWidget {
   TextEditingController emailc = TextEditingController();
@@ -51,7 +52,12 @@ class Forgotpass extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
 
-                ElevatedButton(onPressed: () {}, child: Text("revovery link")),
+                ElevatedButton(
+                  onPressed: () {
+                    forgpass(emailc.text, context);
+                  },
+                  child: Text("revovery link"),
+                ),
                 Lottie.asset("assets/forgot.json"),
 
                 GestureDetector(
