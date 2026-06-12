@@ -105,6 +105,7 @@ class _SignupState extends State<Signup> {
                   ),
                 ),
                 TextFormField(
+                  obscureText: pass_isvisible,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Enter your password";
@@ -114,7 +115,7 @@ class _SignupState extends State<Signup> {
                     }
                   },
                   controller: passc,
-                  obscureText: pass_isvisible,
+
                   decoration: InputDecoration(
                     hintText: "Password",
                     suffixIcon: IconButton(
@@ -157,7 +158,7 @@ class _SignupState extends State<Signup> {
                     suffixIcon: IconButton(
                       onPressed: () {
                         setState(() {
-                          conf_isvisible != conf_isvisible;
+                          conf_isvisible = conf_isvisible;
                         });
                       },
                       icon: conf_isvisible
